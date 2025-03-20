@@ -1,15 +1,7 @@
 public class User_Information {
     private double rate;
-    private double currentAmount;
-    private double payment;
+    private double balance;
     private double principal;
-
-//    public User_Information(double rate, double currentAmount, double payment, double initialAmount){
-//        this.currentAmount = currentAmount;
-//        this.payment = payment;
-//        this.initialAmount = initialAmount;
-//        this.rate = rate;
-//    }
 
     public void setRate(double rate){
         this.rate = rate;
@@ -19,12 +11,12 @@ public class User_Information {
         return rate;
     }
 
-    public void setCurrentAmount(double currentAmount){
-        this.currentAmount = currentAmount;
+    public void setBalance(double balance){
+        this.balance = balance;
     }
 
-    public double getCurrentAmount() {
-        return currentAmount;
+    public double getBalance() {
+        return balance;
     }
 
     public void setPrincipal(double principal) {
@@ -33,14 +25,6 @@ public class User_Information {
 
     public double getPrincipal() {
         return principal;
-    }
-
-    public void setPayment(double payment) {
-        this.payment = payment;
-    }
-
-    public double getPayment() {
-        return payment;
     }
 
     public double getDailyInterest(){
@@ -58,10 +42,15 @@ public class User_Information {
         return monthlyInterest; 
     }
 
+    public double getPayment() {
+        double minimumPayment = (principal * getRateConvert()) / 12;
+        return minimumPayment;
+    }
+
     @Override
     public String toString(){
-        return "This is your rate: " + getRate() + " this is your monthly payment: "
-                + getPayment() + " this is the remaining balance: " + getCurrentAmount() +
-                " and this is the principal: " + getPrincipal() + ". And this is your monthly interest: " + String.format("%.02f", getMonthlyInterest());
+        return "This is your rate: " + getRate() + "% this is your monthly payment: $"
+                + String.format("%.02f", getPayment()) + " this is the remaining balance: $" + getBalance() +
+                " and this is the principal: $" + getPrincipal() + ". And this is your monthly interest: $" + String.format("%.02f", getMonthlyInterest());
     }
 }

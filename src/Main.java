@@ -15,14 +15,10 @@ public class Main {
         System.out.print("What was the initial loan/debt amount?: ");
         double principal = scanner.nextDouble();
 
-        System.out.print("What is your current payment?: ");
-        double payment = scanner.nextDouble();
-
         scanner.close();
         ui1.setRate(rate);
-        ui1.setCurrentAmount(currentAmount);
+        ui1.setBalance(currentAmount);
         ui1.setPrincipal(principal);
-        ui1.setPayment(payment);
 
         System.out.println(ui1);
     }
