@@ -16,8 +16,6 @@ public class User_Information {
 //    }
 
     public void setRate(double rate){
-        rate = scanner.nextDouble();
-        System.out.print("Enter the current rate: " + rate);
         this.rate = rate;
     }
 
@@ -26,8 +24,6 @@ public class User_Information {
     }
 
     public void setCurrentAmount(double currentAmount){
-        currentAmount = scanner.nextDouble();
-        System.out.print("Enter the current amount: " + currentAmount);
         this.currentAmount = currentAmount;
     }
 
@@ -36,8 +32,6 @@ public class User_Information {
     }
 
     public void setInitialAmount(double initialAmount) {
-        initialAmount = scanner.nextDouble();
-        System.out.print("Enter the initial amount: " + initialAmount);
         this.initialAmount = initialAmount;
     }
 
@@ -46,8 +40,6 @@ public class User_Information {
     }
 
     public void setPayment(double payment) {
-        payment = scanner.nextDouble();
-        System.out.print("Enter the payment amount: " + payment);
         this.payment = payment;
     }
 
