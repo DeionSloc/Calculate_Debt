@@ -47,9 +47,14 @@ public class User_Information {
         return payment;
     }
 
+    public double getCalculation(){
+        double calculation = (rate / 365) * initialAmount;;
+        return calculation;
+    }
+
     public String toString(){
         return "This is the user's rate: " + getRate() + " this is the user's monthly payment: "
                 + getPayment() + " this is the user's current amount: " + getCurrentAmount() +
-                " and this is the user's initial amount: " + getInitialAmount();
+                " and this is the user's initial amount: " + getInitialAmount() + " And this is your daily interest: " + getCalculation();
     }
 }
