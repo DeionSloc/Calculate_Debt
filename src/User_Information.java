@@ -1,12 +1,8 @@
-import java.util.Scanner;
-
 public class User_Information {
     private double rate;
     private double currentAmount;
     private double payment;
-    private double initialAmount;
-
-    Scanner scanner = new Scanner(System.in);
+    private double principal;
 
 //    public User_Information(double rate, double currentAmount, double payment, double initialAmount){
 //        this.currentAmount = currentAmount;
@@ -31,12 +27,12 @@ public class User_Information {
         return currentAmount;
     }
 
-    public void setInitialAmount(double initialAmount) {
-        this.initialAmount = initialAmount;
+    public void setPrincipal(double principal) {
+        this.principal = principal;
     }
 
-    public double getInitialAmount() {
-        return initialAmount;
+    public double getPrincipal() {
+        return principal;
     }
 
     public void setPayment(double payment) {
@@ -47,14 +43,25 @@ public class User_Information {
         return payment;
     }
 
-    public double getCalculation(){
-        double calculation = (rate / 365) * initialAmount;;
-        return calculation;
+    public double getDailyInterest(){
+        double dailyInterest = (rate / 365) * principal;
+        return dailyInterest;
     }
 
+    public double getRateConvert(){
+        double rateConvert = rate / 100;
+        return rateConvert;
+    }
+
+    public double getMonthlyInterest(){
+        double monthlyInterest = (getRateConvert() / 12) * principal;
+        return monthlyInterest; 
+    }
+
+    @Override
     public String toString(){
-        return "This is the user's rate: " + getRate() + " this is the user's monthly payment: "
-                + getPayment() + " this is the user's current amount: " + getCurrentAmount() +
-                " and this is the user's initial amount: " + getInitialAmount() + " And this is your daily interest: " + getCalculation();
+        return "This is your rate: " + getRate() + " this is your monthly payment: "
+                + getPayment() + " this is the remaining balance: " + getCurrentAmount() +
+                " and this is the principal: " + getPrincipal() + ". And this is your monthly interest: " + String.format("%.02f", getMonthlyInterest());
     }
 }
