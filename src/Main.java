@@ -15,7 +15,11 @@ public class Main {
         System.out.print("What was the initial loan/debt amount?: ");
         double principal = scanner.nextDouble();
 
+        System.out.print("What's the length of the loan in years?: ");
+        int years = scanner.nextInt();
+
         scanner.close();
+        ui1.setYears(years);
         ui1.setRate(rate);
         ui1.setBalance(currentAmount);
         ui1.setPrincipal(principal);

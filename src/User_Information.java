@@ -2,6 +2,15 @@ public class User_Information {
     private double rate;
     private double balance;
     private double principal;
+    private int years;
+
+    public void setYears(int years){
+        this.years = years;
+    }
+
+    public int getYears(){
+        return years;
+    }
 
     public void setRate(double rate){
         this.rate = rate;
@@ -32,19 +41,28 @@ public class User_Information {
         return dailyInterest;
     }
 
+    public int getMonths(){
+        int months = years * 10;
+        return months;
+    }
+
     public double getRateConvert(){
         double rateConvert = rate / 100;
         return rateConvert;
     }
 
     public double getMonthlyInterest(){
-        double monthlyInterest = (getRateConvert() / 12) * principal;
+        double monthlyInterest = (getRateConvert() / 12);
         return monthlyInterest; 
     }
 
     public double getPayment() {
-        double minimumPayment = (principal * getRateConvert()) / 12;
-        return minimumPayment;
+        double firstEquation = (1 + getMonthlyInterest());
+        double powerOf = Math.pow(firstEquation, getMonths());
+        double top = getMonthlyInterest() * powerOf;
+        double bottom = powerOf - 1;
+        double minimumPayment = (top / bottom) * balance;
+        return minimumPayment; 
     }
 
     @Override
