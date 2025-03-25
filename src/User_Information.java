@@ -64,13 +64,19 @@ public class User_Information {
 
     public double getExtraPayment(){
         double extraPayment = balance - (getMinimumPayment() + extra);
-        return extraPayment;
+        for(double x = 0; x < years * 12; x++){
+            balance -= extraPayment;
+            System.out.println(x);
+        }
+        return balance;
     }
 
     @Override
     public String toString(){
         return "This is your rate: " + getRate() + "% this is your monthly payment: $"
                 + String.format("%.02f", getMinimumPayment()) + " this is the remaining balance: $" + getBalance() +
-                " and this is the principal: $" + getPrincipal() + " this is the total amount you will pay over the life of the loan: $" + String.format("%.02f", getTotalPayment());
+                " and this is the principal: $" + getPrincipal() + " this is the total amount you will pay over the life of the loan: $" 
+                + String.format("%.02f", getTotalPayment()) + ". This is how long it will take you to pay off your loan adding an extra $"
+                + extra + ": " + getExtraPayment();
     }
 }
