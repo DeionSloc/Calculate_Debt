@@ -3,6 +3,15 @@ public class User_Information {
     private double balance;
     private double principal;
     private int years;
+    private double extra;
+
+    public void setExtra(double extra){
+        this.extra = extra;
+    }
+
+    public double getExtra(){
+        return extra;
+    }
 
     public void setYears(int years){
         this.years = years;
@@ -41,34 +50,27 @@ public class User_Information {
         return dailyInterest;
     }
 
-    public int getMonths(){
-        int months = years * 10;
-        return months;
-    }
-
-    public double getRateConvert(){
-        double rateConvert = rate / 100;
-        return rateConvert;
-    }
-
-    public double getMonthlyInterest(){
-        double monthlyInterest = (getRateConvert() / 12);
-        return monthlyInterest; 
-    }
-
-    public double getPayment() {
-        double firstEquation = (1 + getMonthlyInterest());
-        double powerOf = Math.pow(firstEquation, getMonths());
-        double top = getMonthlyInterest() * powerOf;
-        double bottom = powerOf - 1;
-        double minimumPayment = (top / bottom) * balance;
+    public double getMinimumPayment() {
+        double monthlyInterest = rate / 1200;
+        double minimumPayment = principal * monthlyInterest /
+        (1 - 1 / Math.pow(1 + monthlyInterest, years * 12));
         return minimumPayment; 
+    }
+
+    public double getTotalPayment(){
+        double totalPayment = getMinimumPayment() * 12 * years;
+        return totalPayment;
+    }
+
+    public double getExtraPayment(){
+        double extraPayment = balance - (getMinimumPayment() + extra);
+        return extraPayment;
     }
 
     @Override
     public String toString(){
         return "This is your rate: " + getRate() + "% this is your monthly payment: $"
-                + String.format("%.02f", getPayment()) + " this is the remaining balance: $" + getBalance() +
-                " and this is the principal: $" + getPrincipal() + ". And this is your monthly interest: $" + String.format("%.02f", getMonthlyInterest());
+                + String.format("%.02f", getMinimumPayment()) + " this is the remaining balance: $" + getBalance() +
+                " and this is the principal: $" + getPrincipal() + " this is the total amount you will pay over the life of the loan: $" + String.format("%.02f", getTotalPayment());
     }
 }
