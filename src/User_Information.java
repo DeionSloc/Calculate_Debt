@@ -79,7 +79,7 @@ public class User_Information {
                 + String.format("%.02f", getMinimumPayment()) + " this is the remaining balance: $" + getBalance() +
                 " and this is the principal: $" + getPrincipal() + " this is the total amount you will pay over the life of the loan: $" 
                 + String.format("%.02f", getTotalPayment()) + ". This is how long it will take you to pay off your loan adding an extra $"
-                + extra + ": " + String.format("%.02f", getExtraPayment()) + ". This is the total amount you will pay adding an extra $" + extra + " to the loan: $"
+                + extra + ": " + String.format("%.01f months", getExtraPayment()) + ". This is the total amount you will pay adding an extra $" + extra + " to the loan: $"
                 + String.format("%.02f", getExpeditedPayment());
     }
 }
