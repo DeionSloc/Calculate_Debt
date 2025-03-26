@@ -51,10 +51,10 @@ public class User_Information {
     }
 
     public double getMinimumPayment() {
-        double monthlyInterest = rate / 1200;
-        double minimumPayment = principal * monthlyInterest /
-        (1 - 1 / Math.pow(1 + monthlyInterest, years * 12));
-        return minimumPayment; 
+        double monthlyInterestRate = rate / 1200;
+        double minimumPayment = principal * monthlyInterestRate /
+        (1 - 1 / Math.pow(1 + monthlyInterestRate, years * 12));
+        return minimumPayment;
     }
 
     public double getTotalPayment(){
@@ -63,12 +63,14 @@ public class User_Information {
     }
 
     public double getExtraPayment(){
-        double extraPayment = balance - (getMinimumPayment() + extra);
-        for(double x = 0; x < years * 12; x++){
-            balance -= extraPayment;
-            System.out.println(x);
-        }
-        return balance;
+        double extraPayment = getMinimumPayment() + extra;
+        double newTotal = balance / extraPayment;
+        return newTotal;
+    }
+
+    public double getExpeditedPayment(){
+        double expeditedPayment = getExtraPayment() * 12 * years;
+        return expeditedPayment;
     }
 
     @Override
@@ -77,6 +79,7 @@ public class User_Information {
                 + String.format("%.02f", getMinimumPayment()) + " this is the remaining balance: $" + getBalance() +
                 " and this is the principal: $" + getPrincipal() + " this is the total amount you will pay over the life of the loan: $" 
                 + String.format("%.02f", getTotalPayment()) + ". This is how long it will take you to pay off your loan adding an extra $"
-                + extra + ": " + getExtraPayment();
+                + extra + ": " + String.format("%.02f", getExtraPayment()) + ". This is the total amount you will pay adding an extra $" + extra + " to the loan: $"
+                + String.format("%.02f", getExpeditedPayment());
     }
 }
