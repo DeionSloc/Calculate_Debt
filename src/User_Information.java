@@ -64,12 +64,12 @@ public class User_Information {
 
     public double getExtraPayment(){
         double extraPayment = getMinimumPayment() + extra;
-        double newTotal = balance / extraPayment;
-        return newTotal;
+        double totalMonths = balance / extraPayment;
+        return totalMonths;
     }
 
     public double getExpeditedPayment(){
-        double expeditedPayment = getExtraPayment() * 12 * years;
+        double expeditedPayment = (getMinimumPayment() + extra) * 12 * years;
         return expeditedPayment;
     }
 
