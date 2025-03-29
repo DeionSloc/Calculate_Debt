@@ -69,7 +69,11 @@ public class User_Information {
     }
 
     public double getExpeditedPayment(){
-        double expeditedPayment = (getMinimumPayment() + extra) * 12 * years;
+        double monthlyInterestRate = rate / 1200;
+        double monthlyInterest = monthlyInterestRate * balance;
+        double extraPayment = getMinimumPayment() + extra;
+        double totalMonths = balance / extraPayment;
+        double expeditedPayment = (getMinimumPayment() + extra) * totalMonths + (totalMonths * monthlyInterest);
         return expeditedPayment;
     }
 
