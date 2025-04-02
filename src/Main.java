@@ -2,11 +2,16 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        int i = 0;
+
         Scanner scanner = new Scanner(System.in);
 
         // User_Information ui1 = new User_Information();
+        System.out.print("How many loans are you checking?: ");
+        int numLoans = scanner.nextInt();
 
-        System.out.print("What is your current rate?: ");
+        for(i = 0; i < numLoans; i++){
+            System.out.print("What is your current rate?: ");
         double rate = scanner.nextDouble();
 
         System.out.print("What is the remaining balance?: ");
@@ -34,12 +39,11 @@ public class Main {
         double months = balance / extraPayment;
 
         double expeditedPayment = (extraPayment * months) + (months * monthlyInterest);
-
-        System.out.printf("This is the principal of the loan: %.2f, this is the current balance $%.2f, this is the rate: %.2f, and this is the life of the loan: %d\n", principal, balance, rate, years);
-        System.out.printf("This is your current monthly payment: $%.2f, this is the monthly interest: $%.2f. Paying an extra $%.2f with your current balance shortens the life of the loan to %.0f months.\n", monthlyPayment, monthlyInterest, extra, months);
-        System.out.printf("This is the amount you will pay over the life of the loan %.2f and if you choose to put in extra, this is how much you will pay %.2f", totalPayment, expeditedPayment);
-
-
+ 
+        System.out.printf("This is the principal of the loan: %.2f, this is the current balance $%.2f, this is the rate: %.2f, and this is the life of the loan: %d. Your current monthly payment is $%.2f and the total amount you will pay over the life of the loan is $%.2f\n", principal, balance, rate, years, monthlyPayment, totalPayment);
+        System.out.printf("If you add an extra $%.2f to the payment, you will fully pay off your loan in %.0f months. The total amount you will pay will be $%.2f \n", extra, months, expeditedPayment);
+        }
+                
         scanner.close();
         // ui1.setYears(years);
         // ui1.setRate(rate);
